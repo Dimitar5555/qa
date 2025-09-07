@@ -1,0 +1,37 @@
+{
+  "name": "qa",
+  "version": "1.0.0",
+  "description": "",
+  "config": {
+    "parcel_paths": "./src/index.html ./src/motorway-milestones/index.html"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-github": "npx parcel build $npm_package_config_parcel_paths --public-url /qa/",
+    "dev": "parcel $npm_package_config_parcel_paths"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osm-bg/qa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/osm-bg/qa/issues"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "leaflet": "^1.9.4",
+    "leaflet.featuregroup.subgroup": "^1.0.2",
+    "leaflet.locatecontrol": "^0.84.2",
+    "leaflet.markercluster": "^1.5.3",
+    "parcel": "^2.15.4"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.4",
+    "posthtml-include": "^2.0.1"
+  }
+}

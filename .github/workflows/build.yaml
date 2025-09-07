@@ -1,0 +1,55 @@
+name: Build Website
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+      - '.github/workflows/build.yaml'
+
+permissions:
+  id-token: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download qa-motorway-milestones artifact
+        uses: dawidd6/action-download-artifact@v11
+        with:
+          name: milestones-data
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          search_artifacts: true
+          workflow_search: true
+          repo: osm-bg/qa-motorway-milestones
+          path: ./src/motorway-milestones
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build website
+        run: npm run build-github
+
+      - name: Add <base> tag to *.html files
+        run: find ./dist -name "*.html" -exec sed -i 's|<base href=/|<base href="/qa/"|' {} +
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
