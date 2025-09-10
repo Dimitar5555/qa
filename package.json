@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "config": {
-    "parcel_paths": "./src/index.html ./src/motorway-milestones/index.html"
+    "parcel_paths": "./src/index.html ./src/motorway-milestones/index.html ./src/road-network/index.html"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "google-polyline": "^1.0.3",
     "leaflet": "^1.9.4",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "leaflet.locatecontrol": "^0.84.2",

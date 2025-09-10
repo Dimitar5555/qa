@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+	<base href="/">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Пътна мрежа - Инструменти за OSM-BG</title>
+	<link rel="stylesheet" href="/src/assets/scss/custom.scss">
+	<style>
+		#map {
+			height: 750px;
+		}
+		.marker-cluster {
+			color: black;
+		}
+		textarea {
+			white-space: pre-wrap !important;
+		}
+	</style>
+</head>
+<body>
+	<include src="./src/_includes/nav.html" type="module"></include>
+	<main class="container-fluid mt-2">
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				<h2>Магистрали</h2>
+				<div id="motorways"></div>
+				<h2>Първокласни</h2>
+				<div id="national-primary"></div>
+				<h2>Второкласни</h2>
+				<div id="national-secondary"></div>
+				<h2>Третокласни</h2>
+				<div class="accordion" id="national-tertiary"></div>
+				<h2>Общински</h2>
+				<div class="accordion" id="municipal"></div>
+				Последно обновяване на данните: <span id="last_updated"></span>
+			</div>
+			<div class="col-12 col-sm-9">
+				<div id="map"></div>
+			</div>
+		</div>
+	</main>
+
+	<script src="/src/road-network/app.js" type="module"></script>
+</body>
+</html>

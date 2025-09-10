@@ -30,6 +30,17 @@ jobs:
           repo: osm-bg/qa-motorway-milestones
           path: ./src/motorway-milestones
 
+      - name: Download qa-road-network artifact
+        uses: dawidd6/action-download-artifact@v11
+        with:
+          name: road-network-data
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          search_artifacts: true
+          workflow_search: true
+          repo: osm-bg/qa-road-network
+          path: ./src/road-network
+          
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
 
