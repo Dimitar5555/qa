@@ -101,7 +101,7 @@ async function start() {
     const roads = await fetch(new URL('./routes.json', import.meta.url))
     .then(response => response.json())
     .then(routes => {
-        document.querySelector('#last_updated').textContent = new Date(routes.last_updated).toLocaleString('bg-BG', { dateStyle: 'short', timeStyle: 'short' });
+        document.querySelector('#last_updated').textContent = new Date(routes.date).toLocaleString('bg-BG', { dateStyle: 'short', timeStyle: 'short' });
         routes.data.sort((a, b) => {
             if(typeof a.ref === 'number' && typeof b.ref === 'number') {
                 return a.ref - b.ref;
