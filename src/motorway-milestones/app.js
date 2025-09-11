@@ -35,7 +35,7 @@ function get_div_icon_with_number(number, color) {
 
 async function start() {
     map = init_map();
-    const motorways = await fetch(new URL('./data.json', import.meta.url))
+    const motorways = await fetch(new URL('./milestones-data.json', import.meta.url))
     .then(response => response.json());
     const table_body = document.querySelector('tbody');
     const layer_50 = new L.LayerGroup();
