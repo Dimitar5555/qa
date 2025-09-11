@@ -25,7 +25,6 @@ jobs:
         with:
           name: milestones-data
           github_token: ${{secrets.GITHUB_TOKEN}}
-          search_artifacts: true
           workflow_search: true
           repo: osm-bg/qa-motorway-milestones
           path: ./src/motorway-milestones
@@ -35,7 +34,6 @@ jobs:
         with:
           name: road-network-data
           github_token: ${{secrets.GITHUB_TOKEN}}
-          search_artifacts: true
           workflow_search: true
           repo: osm-bg/qa-road-network
           path: ./src/road-network
