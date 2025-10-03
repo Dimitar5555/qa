@@ -38,6 +38,14 @@ jobs:
           repo: osm-bg/qa-road-network
           path: ./src/road-network
           
+      - name: Download qa-atp-osm artifact
+        uses: dawidd6/action-download-artifact@v11
+        with:
+          name: brand-data
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow_search: true
+          repo: osm-bg/qa-atp-osm
+          path: ./src/atp-osm
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
