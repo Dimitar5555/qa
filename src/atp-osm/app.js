@@ -1,4 +1,3 @@
-import { custom_fetch } from '/src/assets/js/utils.js';
 import { init_map, get_icon } from '/src/assets/js/map.js';
 import { markerClusterGroup } from 'leaflet.markercluster';
 import { brands_map } from './brands-map.js';
@@ -238,7 +237,7 @@ function load_data(){
 		return btn;
 	}*/
 	// import metadata from `./data/metadata.json`;
-    custom_fetch('/atp-osm/data/metadata.json')
+    fetch(new URL('./metadata.json', import.meta.url))
     .then(res => res.json())
 	.then(data => data.sort((a, b) => a.spider.localeCompare(b.spider) || a.key.localeCompare(b.key)  || a.value.localeCompare(b.value)))
 	.then(spiders => {
@@ -411,7 +410,7 @@ function populate_map(key, value, spider_data, locations, overlays, cluster_grou
 }
 
 function show_spider_data(spider_name) {
-    custom_fetch('/atp-osm/data/metadata.json')
+    fetch(new URL('./metadata.json', import.meta.url))
     .then(res => res.json())
 	.then(spiders => spiders.filter(spider => spider.spider === spider_name))
 	.then(async (spiders) => {
@@ -432,7 +431,7 @@ function show_spider_data(spider_name) {
 				overview_table.appendChild(createHTMLElement('tr', {}, [createHTMLElement('th', {innerText: last_category, colspan: 5})]));
 			}*/
 			const filename = brands_map.get(`${key}-${value}-${spider.spider}`);
-			const locations_response = await custom_fetch(filename);
+			const locations_response = await fetch(filename);
 			const spider_data = (await locations_response.json());
 			const locations = spider_data.data;
 			
@@ -478,12 +477,13 @@ function load_all_map_data() {
 		showCoverageOnHover: false
 	}).addTo(map);
 	console.time('load_all_map_data');
-    custom_fetch('/atp-osm/data/metadata.json')
+    fetch(new URL('./metadata.json', import.meta.url))
 	.then(res => res.json())
 	.then(data => {
 		let promises = [];
 		for(const {key, value, spider} of data) {
-			const promise = custom_fetch(`/atp-osm/data/${key}_${value}_${spider}.json`)
+			const filename = brands_map.get(`${key}-${value}-${spider}`);
+			const promise = fetch(filename)
 			.then(res => res.json())
 			.then(spider_data => {
 				const locations = spider_data.data;
