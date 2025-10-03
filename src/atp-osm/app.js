@@ -1,7 +1,7 @@
 import { custom_fetch } from '/src/assets/js/utils.js';
 import { init_map, get_icon } from '/src/assets/js/map.js';
 import { markerClusterGroup } from 'leaflet.markercluster';
-
+import { brands_map } from './brands-map.js';
 
 
 function createTable(parent, items, spider_data, type, options=false) {
@@ -431,7 +431,8 @@ function show_spider_data(spider_name) {
 				last_category = `${points.metadata.key}=${points.metadata.value}`;
 				overview_table.appendChild(createHTMLElement('tr', {}, [createHTMLElement('th', {innerText: last_category, colspan: 5})]));
 			}*/
-			const locations_response = await custom_fetch(`/atp-osm/data/${key}_${value}_${spider.spider}.json`);
+			const filename = brands_map.get(`${key}-${value}-${spider.spider}`);
+			const locations_response = await custom_fetch(filename);
 			const spider_data = (await locations_response.json());
 			const locations = spider_data.data;
 			
