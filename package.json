@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "config": {
-    "parcel_paths": "./src/index.html ./src/motorway-milestones/index.html ./src/road-network/index.html"
+    "parcel_paths": "./src/index.html ./src/motorway-milestones/index.html ./src/road-network/index.html ./src/atp-osm/index.html"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
